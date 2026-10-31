@@ -2,7 +2,11 @@ import React, { useState, useEffect, useMemo } from "react";
 import "./index.css";
 import { PRODUCTS_DATA } from "./productsData";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE =
+  process.env.REACT_APP_API_URL ||
+  (typeof window !== "undefined" && window.location.hostname !== "localhost"
+    ? `http://${window.location.hostname}:5000`
+    : "http://localhost:5000");
 
 const CATEGORIES = [
   { id: "All", name: "All Items", icon: "🧺", count: 12 },
